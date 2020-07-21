@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>AdminLTE 3 | 관리자화면</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="/resources/home/css/common.css">
+  
+ <style>
+
+.ggg {
+
+}
+
+
+ </style>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>     
+     </ul>
+     
+     <!-- SEARCH FORM -->
+    <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+   
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+      
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
+            class="fas fa-th-large"></i></a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">user02</span><br>
+      <span class="badge badge-info right"> </span>
+      <span class="online">online</span>
+    </a>
+   
+     <!-- SEARCH FORM -->
+    <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search..." aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        
+          <a class="d-block">MAIN NAVIGATION</a>
+       
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th ggg"></i>
+              <p>
+               사용자 홈     
+              </p>
+            </a>
+          </li>
+         </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+      
+      
+      
+      
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>관리자관리</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>게시물관리</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+         </ul>
+      </nav>
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="board na">
+    <div class="content-header">
+       <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">게시판 검색</h1>
+          </div><!-- /.col -->
+          </div>
+          
+          
+          <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="---" aria-label="Search">
+        <div class="input-group-append">
+          <select name="search">
+    <option value="">↓</option>
+    
+</select><button class="btn btn-navbar" type="submit">
+            
+          </button>
+        </div>
+        
+        <input class="form-control form-control-navbar" type="" placeholder="---" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            	검색
+          </button>
+        </div>
+      </div>
+    </form> 
+    
+          
+      
+    </div>
+    <!-- /.content-header -->
+
+
+	<table class="bbsListTbl" summary="번호,제목,조회수,작성일 등을 제공하는 표">
+				<caption class="hdd">공지사항  목록</caption>
+				<thead>
+					<tr>
+						<th scope="col">BNO</th>
+						<th scope="col">TITLE</th>
+						<th scope="col">REGDATE</th>
+						<th scope="col">VIEWCNT</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td class="tit_notice"><a href="notice_view.html">이번 여름 휴가 제주 갈까? 미션 투어 (스프링경비 50만원 지원)</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td class="tit_notice"><a href="notice_view.html">박물관 미션 투어 응모 당첨자 발표</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td class="tit_notice"><a href="notice_view.html">추석 연휴 티켓/투어 배송 및 직접 수령 안내</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td class="tit_notice"><a href="notice_view.html">하롱베이 서비스 OPEN! (스프링정보, 가이드북, 가이드맵)</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td class="tit_notice"><a href="notice_view.html">스프링 서비스 점검 안내 - 스프링에서 매월 실시하는 정기점검 안내</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td class="tit_notice"><a href="notice_view.html">이번 여름 휴가 제주 갈까? 미션 투어 (스프링경비 50만원 지원)</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>7</td>
+						<td class="tit_notice"><a href="notice_view.html">박물관 미션 투어 응모 당첨자 발표</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td class="tit_notice"><a href="notice_view.html">추석 연휴 티켓/투어 배송 및 직접 수령 안내</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>9</td>
+						<td class="tit_notice"><a href="notice_view.html">하롱베이 서비스 OPEN! (스프링정보, 가이드북, 가이드맵)</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td class="tit_notice"><a href="notice_view.html">스프링 서비스 점검 안내</a> </td>
+						<td>123</td>
+						<td>2018-08-01</td>
+					</tr>
+				</tbody>
+			</table>
+			<button type="button" class="btn btn-info">CREATE</button>
+			
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          
+          
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+      <button type="button" class="btn btn-primary btn-lg btn-block">로그아웃</button>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+ 
+
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+      Anything you want
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+</div>
+</body>
+</html>
