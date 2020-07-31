@@ -63,23 +63,24 @@ if('${msg}' != ""){
             <nav>
             <ul class="gnb clear">
                <li><a href="/sample" class="openAll1">포트폴리오</a>
-
                         <div class="gnb_depth gnb_depth2_1">
                             <ul class="submenu_list">
                                 <li><a href="/sample">원페이지</a></li>
                                 <li><a href="/sample/slide">슬라이드</a></li>
                             </ul>
-                        </div>
-               </li>
-               <li><a href="#" class="openAll2">고객센터</a>
-                    <div class="gnb_depth gnb_depth2_2">
-                            <ul class="submenu_list">
-                                <li><a href="/board/list">공지사항</a></li>
-                            </ul>
-                        </div>
-               </li>
-               
-            </ul>
+	                        </div>
+	               </li>               
+	               <li><a href="#" class="openAll2">게시판관리</a>
+	                    <div class="gnb_depth gnb_depth2_2">
+	                            <ul class="submenu_list">
+		                            <li><a href="/board/list?searchBoard=">전체게시판</a></li>
+	                                <li><a href="/board/list?searchBoard=notice">공지사항</a></li>
+	                                <li><a href="/board/list?searchBoard=gallery">갤러리</a></li>
+	                            </ul>
+	                        </div>
+	               </li>	               
+	              
+	            	</ul>
                 </nav>
             <p class="closePop"><a href="#">닫기</a></p>
          </div>

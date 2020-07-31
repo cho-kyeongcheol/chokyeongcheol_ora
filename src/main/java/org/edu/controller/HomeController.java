@@ -172,8 +172,18 @@ public class HomeController {
     * @throws Exception 
     */
    @RequestMapping(value = "/board/list", method = RequestMethod.GET)
-   public String boardList(@ModelAttribute("pageVO") PageVO pageVO , Locale locale, Model model) throws Exception {
-      //PageVO pageVO = new PageVO();//매개변수로 받기전에 테스트용
+   public String boardList(@ModelAttribute("pageVO") PageVO pageVO , Locale locale, Model model, HttpServletRequest request) throws Exception {
+	   HttpSession session = request.getSession(); //세션을 초기화 시켜줌 if문에 사용하기 위해 밖으로 빼서 선언
+		if(pageVO.getSearchBoard() != null) {
+			//최초 세션 만들어짐 
+			session.setAttribute("session_bod_type", pageVO.getSearchBoard());
+		}else {
+			//일반링크 클릭시 /admin/board/view?page=2... 데이터 전송
+			//만들어진 세션을 사용
+			pageVO.setSearchBoard((String) session.getAttribute("session_bod_type"));
+		}
+	   
+	   //PageVO pageVO = new PageVO();//매개변수로 받기전에 테스트용
      if(pageVO.getPage() == null) { //초기 page변수값 지정
         pageVO.setPage(1);
      } 
@@ -316,11 +326,13 @@ public class HomeController {
       }
       pageVO.setPerPageNum(5);//1페이지당 보여줄 게시물 수 강제지정
       pageVO.setTotalCount(boardService.countBno(pageVO));//강제로 입력한 값을 쿼리로 대체OK.
-      List<BoardVO> list = boardService.selectBoard(pageVO);
-      
-      //첨부파일 출력때문에 추가 Start
+      pageVO.setSearchBoard("gallery");
+      List<BoardVO> listGallery = boardService.selectBoard(pageVO);
+      pageVO.setSearchBoard("notice");
+      List<BoardVO> listNotice = boardService.selectBoard(pageVO);
+            //첨부파일 출력때문에 추가 Start -- 갤러리에서만 필요
       List<BoardVO> boardListFiles = new ArrayList<BoardVO>();
-      for(BoardVO vo:list) {
+      for(BoardVO vo:listGallery) {
          List<String> files = boardService.selectAttach(vo.getBno());
          String[] filenames = new String[files.size()];
          int cnt = 0;
@@ -335,7 +347,8 @@ public class HomeController {
       //System.out.println("======디버그3=======" + boardListFiles);
       model.addAttribute("extNameArray", fileDataUtil.getExtNameArray());//첨부파일이 이미지인지 문서파일인 구분용 jsp변수
       //첨부파일 출력때문에 추가 End
-      model.addAttribute("boardList", boardListFiles);      
+      model.addAttribute("boardListGallery", boardListFiles);      
+      model.addAttribute("boardListNotice", listNotice);
       return "home";
    }
 

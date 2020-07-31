@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+<script type="text/javascript">
+ 
+function checkfield(){
+ 
+ if(document.addjoin.id.value==""){ 
+ alert("아이디를 입력하세요");         
+ document.addjoin.id.focus();     
+ exit;
+ 
+ }else if(document.addjoin.pw.value==""){
+ alert("비밀번호를 입력하세요");
+ document.addjoin.pw.focus();
+ exit;
+ 
+ }else if(document.addjoin.pw2.value==""){
+ alert("비밀번호확인을 입력하세요");
+ document.addjoin.pw2.focus();
+ exit;
+ 
+ }else if(document.addjoin.name.value==""){
+ alert("이름을 입력하세요");
+ document.addjoin.name.focus();
+ exit;
+ 
+ }else if(document.addjoin.nick.value==""){
+ alert("닉네임을 입력하세요");
+ document.addjoin.nick.focus();
+ exit; 
+ 
+ }else if(document.addjoin.addr.value==""){
+ alert("주소를 입력하세요");
+ document.addjoin.addr.focus();
+ exit;
+ 
+ }else if(document.addjoin.email.value==""){
+ alert("이메일을 입력하세요");
+ document.addjoin.email.focus();
+ exit;
+ 
+ }
+ 
+ 
+ if(document.addjoin.pw.value!=document.addjoin.pw2.value){
+
+ 
+ alert("입력한 2개의 비밀번호가 일치하지 않습니다.");
+ document.addjoin.pw.focus();
+ exit;
+ 
+ }
+ 
+ 
+ var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+ 
+ if(exptext.test(document.addjoin.email.value)==false){
+ 
+ 
+ alert("이 메일형식이 올바르지 않습니다.");
+ document.addjoin.email.focus();
+ exit;
+ }
+ 
+ document.addjoin.submit();
+ 
+}
+</script>
+</head>
+<body>
+
+<h1>회원가입</h1>
+
+<form action="addjoinaction" name="addjoin" method="post">
+<table style="text=align:left" width="400px">
+<tr>
+<td>아이디</td><td><input type="text" name="id" id="id">
+<div id="chid"></div>
+
+<tr>
+<td>비밀번호</td><td><input type="password" name="pw" id="pw">
+
+<tr>
+<td>비밀번호확인</td><td><input type="password" name="pw2" id="pw2">
+
+<tr>
+<td>이름</td><td><input type="text" name="name">
+
+<tr>
+<td>닉네임</td><td><input type="text" name="nick">
+
+<tr>
+<td>주소</td><td><input type="text" name="addr">
+
+<tr>
+<td>이메일</td><td><input type="text" name="email" id="email">
+
+</table>
+
+<br>
+<table width="400px">
+<tr><td style="text align:center">
+<input type="button" value="가입" onclick="checkfield()">
+<input type="reset" value="취소">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+	
+</body>
+</html> 

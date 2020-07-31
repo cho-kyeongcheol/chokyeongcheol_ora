@@ -42,8 +42,22 @@
 						<label for="pwd2_lbl" class="tit_lbl">첨부파일</label>
 							<input type="file" name="file" id="file_lbl" value="파일선택" />
 						</li>
-											
+						
+						<li class="clear">	
+						<div class="col-sm-6">
+						<!-- select option -->
+						<div class="form-group">
+							<label for="pwd2_lbl" class="tit_lbl">게시판선택</label>
+							<select name="bod_type" class="form-control" required>
+			                 <option value="">게시판선택</option>
+			                 <option value="notice" <c:out value="${(boardVO.bod_type eq 'notice')?('selected'):''}" />>공지사항</option>
+			                 <option value="gallery" <c:out value="${(boardVO.bod_type eq 'gallery')?('selected'):''}" />>갤러리</option>
+			                </select>
+							</div>
+						</div>
+						</li>				
 					</ul>
+					
 					<p class="btn_line">
 					<button type="submit" class="btn_baseColor">수정</button>
 					<button onclick="location.href='/board/list';return false;" class="btn_baseColor">목록</button>

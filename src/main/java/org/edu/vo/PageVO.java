@@ -12,6 +12,7 @@ public class PageVO {
 	//검색용 변수 2개 추가
 	private String searchType;
 	private String searchKeyword;
+	private String searchBoard;
 	
 	public String getSearchType() {
 		return searchType;
@@ -99,5 +100,13 @@ public class PageVO {
 	}
 	public void setPerPageNum(int perPageNum) {
 		this.perPageNum = perPageNum;
+	}
+
+	public String getSearchBoard() {
+		return searchBoard;
+	}
+
+	public void setSearchBoard(String searchBoard) {
+		this.searchBoard = searchBoard;
 	}
 }

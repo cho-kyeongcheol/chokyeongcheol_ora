@@ -8,21 +8,18 @@
 <!-- container -->
 	<div id="container">
 		<!-- location_area -->
-		<div class="location_area customer">
-			<div class="box_inner">
-				<h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
-				<p class="location">고객센터 <span class="path">/</span> 공지사항</p>
-				<ul class="page_menu clear">
-					<li><a href="#" onclick="return false" class="on">공지사항</a></li>
-					<li><a href="#" onclick="return false">문의하기</a></li>
-				</ul>
-			</div>
-		</div>	
+			<%@ include file="../include/container_header.jsp" %>
 		<!-- //location_area -->
 
 		<!-- bodytext_area -->
 		<div class="bodytext_area box_inner">			
 			<ul class="bbsview_list">
+			<li>
+			<select name="bod_type" class="form-control" required>
+	               <option value="${boardVO.bod_type}">${boardVO.bod_type}</option>
+	        </select>
+			</li>
+				<li class="bbs_title">${boardVO.bod_type}</li>
 				<li class="bbs_title">${boardVO.title}</li>
 				<li class="bbs_hit">작성일 : <span> <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.regdate}" /></span></li>
 				<li class="bbs_date">조회수 : ${boardVO.view_count}</li>
@@ -46,6 +43,8 @@
 			</li>
 			</c:if>
 			</ul>
+			<div class="col-sm-6">
+				<!-- select option -->
 			<p class="btn_line txt_right">
 			<c:if test="${session_enabled}">
 				<a href="javascript:;" id="deleteBno" class="btn_bbs">삭제</a>

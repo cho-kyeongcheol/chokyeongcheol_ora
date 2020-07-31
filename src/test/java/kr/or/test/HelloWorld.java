@@ -20,6 +20,8 @@ class SnowTire extends Tire {//상속=extends=>부모
 public class HelloWorld {
 		
 	public static void main(String[] args) {
+		
+		
 		//(page:jsp클릭변수 -1) * perPgaeNum:페이지당 보여줄 개수;
 		//천장함수 사용법 1페이지, 2페이지, 3페이지
 		int endPage = (int)(Math.ceil(1/10.0)*10);
