@@ -144,8 +144,17 @@ public class HomeController {
     * @throws Exception 
     */
    @RequestMapping(value = "/board/view", method = RequestMethod.GET)
-      public String boardView(@ModelAttribute("pageVO") PageVO pageVO,@RequestParam("bno") Integer bno,Locale locale, Model model) throws Exception {
-         BoardVO boardVO = boardService.viewBoard(bno);
+      public String boardView(@ModelAttribute("pageVO") PageVO pageVO,@RequestParam("bno") Integer bno,Locale locale, Model model, HttpServletRequest request) throws Exception {
+	   HttpSession session = request.getSession(); //세션을 초기화 시켜줌 if문에 사용하기 위해 밖으로 빼서 선언
+		if(pageVO.getSearchBoard() != null) {
+			//최초 세션 만들어짐 
+			session.setAttribute("session_bod_type", pageVO.getSearchBoard());
+		}else {
+			//일반링크 클릭시 /admin/board/view?page=2... 데이터 전송
+			//만들어진 세션을 사용
+			pageVO.setSearchBoard((String) session.getAttribute("session_bod_type"));
+		}		
+	     BoardVO boardVO = boardService.viewBoard(bno);
          // 여기서 부터 첨부파일 출력물
          List<String> files = boardService.selectAttach(bno);
          String[] filenames = new String[files.size()];
