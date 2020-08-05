@@ -16,9 +16,11 @@
 					<div class="col-sm-4">
 						<!-- text input -->
 						<div class="form-group">
-							<label>user_id</label> <input type="text" name="user_id" class="form-control"
+							<label>user_id</label> 
+							<input required id="user_id" type="text" name="user_id" class="form-control"
 								placeholder="Enter ID">
 						</div>
+						<span id="msg_validation"></span>
 					</div>
 				</div>
 				<div class="row">
@@ -34,7 +36,7 @@
 					<div class="col-sm-4">
 						<!-- textarea -->
 						<div class="form-group">
-							<label>user_name</label> <input type="text" name="user_name" class="form-control"
+							<label>user_name</label> <input required type="text" name="user_name" class="form-control"
 								placeholder="Enter name">
 						</div>
 					</div>
@@ -43,7 +45,7 @@
 					<div class="col-sm-4">
 						<!-- textarea -->
 						<div class="form-group">
-							<label>email</label> <input type="text" name="email" class="form-control"
+							<label>email</label> <input required type="text" name="email" class="form-control"
 								placeholder="Enter Email">
 						</div>
 					</div>
@@ -52,7 +54,7 @@
 					<div class="col-sm-4">
 						<!-- textarea -->
 						<div class="form-group">
-							<label>point</label> <input type="text" name="point" class="form-control"
+							<label>point</label> <input required type="text" name="point" class="form-control"
 								placeholder="Enter point">
 						</div>
 					</div>
@@ -76,7 +78,7 @@
 				</div>
 
 				<div class="buttons">
-					<button type="submit" class="btn btn-warning">Submit</button>
+					<button disabled id="btn_submit" type="submit" class="btn btn-warning">Submit</button>
 					<a href="/admin/member/list?page=${pageVO.page}" class="btn btn-primary">LIST ALL</a>
 				</div>
 
@@ -99,7 +101,33 @@
 	</div>
 	<!-- /.card -->
 </div>
-
+<script>
+$(document).ready(function(){
+	$("#user_id").blur(function(){
+		var user_id = $(this).val();
+		//Ajax 백그라운드로 작동되는 프로그램.(비동기 통신에 사용)
+		$.ajax({
+			type:'get',
+			url:'/admin/member/idcheck?user_id='+ user_id,
+			success:function(result){
+				if(result=='1'){
+					$("#msg_validation").text("기존 사용자 아이디가 존재합니다. 다른 아이디를 입력해주세요!");		
+					$("#msg_validation").css({"color":"red","font-size":"14px"});
+					$("#btn_submit").attr("disabled",true);
+				}else{ //중복아이디가 존재하지 않을때
+					$("#msg_validation").text("사용가능한 아이디 입니다.");		
+					$("#msg_validation").css({"color":"red","font-size":"14px"});
+					$("#btn_submit").attr("disabled",false);
+					
+				}
+			},
+			error:function(){
+				alert("중복아이디 체크 RestAPI서버가 정상작동 하지 않습니다")
+			}
+		});
+	});
+});
+</script>
 
 
 

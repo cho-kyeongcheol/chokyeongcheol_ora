@@ -44,8 +44,11 @@
 									<label>게시판선택</label> 
 									<select name="bod_type" class="form-control" required>
 					                 <option value="">게시판선택</option>
-					                 <option value="notice" <c:out value="${(boardVO.bod_type eq 'notice')?('selected'):''}" />>공지사항</option>
-					                 <option value="gallery" <c:out value="${(boardVO.bod_type eq 'gallery')?('selected'):''}" />>갤러리</option>
+						                <c:forEach items="${boardTypeMenu}" var="boardTypeMenu">
+						                 <option value="${boardTypeMenu.bod_type}" <c:out value="${(session_bod_type eq boardTypeMenu.bod_type)?('selected'):''}" />>${boardTypeMenu.bod_name}</option>  
+						                </c:forEach>
+					                 <%-- <option value="notice" <c:out value="${(boardVO.bod_type eq 'notice')?('selected'):''}" />>공지사항</option>
+					                 <option value="gallery" <c:out value="${(boardVO.bod_type eq 'gallery')?('selected'):''}" />>갤러리</option> --%>
 					                </select>
 									</div>
 								</div>
@@ -85,6 +88,7 @@
 						<input type="hidden" name="bno" value="${boardVO.bno}">
 						<input type="hidden" name="page" value="${pageVO.page}">
 						<button type="submit" class="btn btn-warning">Submit</button>
+						
 						<a href="/admin/board/list?page=${pageVO.page}" class="btn btn-primary">LIST ALL</a>
 						</div>
 					</form>
