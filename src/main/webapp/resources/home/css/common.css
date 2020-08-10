@@ -352,7 +352,7 @@ h1.loginTit a img {width:100%;}
 .regForm .reg_list {padding:10px 0 0; background:url(../img/bg_reglist.png) repeat-y;}
 .regForm .reg_list li {min-height:60px; padding:0; border-bottom:1px solid #ccc;}
 .regForm .reg_list li .tit_lbl {position:relative; float:left; width:150px; box-sizing:border-box; padding-left:20px; line-height:60px; font-weight:bold; font-size:16px;}
-.regForm .reg_list li .reg_content {float:right; width:770px; box-sizing:border-box; padding-left:20px; padding-top:25px;font-size:15px;}
+.regForm .reg_list li .reg_content {float:right; width:770px; box-sizing:border-box; padding-left:20px; padding-top:8px;font-size:15px;}
 .regForm .reg_list li .reg_content * {vertical-align:middle;}
 .regForm .reg_list li .reg_content.radio_area {padding-top:20px;}
 .regForm .reg_list li .reg_content label {vertical-align:middle;}

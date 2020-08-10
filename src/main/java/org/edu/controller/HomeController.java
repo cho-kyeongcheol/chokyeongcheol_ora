@@ -19,18 +19,21 @@ import org.edu.util.FileDataUtil;
 import org.edu.vo.BoardVO;
 import org.edu.vo.MemberVO;
 import org.edu.vo.PageVO;
+import org.hsqldb.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;//아이디 암호체크명령어
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;//사용자 상세정보 가져오는소스
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -51,6 +54,83 @@ public class HomeController {
    
    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
    
+   
+   
+   
+	
+	
+   /**
+	 * 회원관리 > 등록 입니다.
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "/mypage/insert", method = RequestMethod.GET)
+	public String memberWrite(Locale locale, Model model) throws Exception {
+		
+		return "mypage/mypage_insert";
+	}
+	@RequestMapping(value = "/mypage/insert", method = RequestMethod.POST)
+	public String memberWrite(@Valid MemberVO memberVO, Locale locale, RedirectAttributes rdat) throws Exception {
+		String new_pw = memberVO.getUser_pw();//예를 들면 1234
+		if(new_pw != "") {
+			//스프링 시큐리티 4.x BCryptPasswordEncoder 암호화 사용
+			BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder(10);
+			String bcryptPassword = bcryptPasswordEncoder.encode(new_pw);//예, 1234 -> 암호화 처리됨
+			memberVO.setUser_pw(bcryptPassword);//DB에 들어가기전 값 set시킴.
+		}
+		memberService.insertMember(memberVO);
+		rdat.addFlashAttribute("msg", "회원가입");
+		return "redirect:/";
+	}
+	
+	/**
+	 * 회원관리 > 수정 입니다.
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "/mypage/update", method = RequestMethod.GET)
+	public String memberUpdate(HttpServletRequest request, Locale locale, Model model) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = memberService.viewMember((String) session.getAttribute("session_userid"));
+		model.addAttribute("memberVO", memberVO);
+		return "mypage/mypage_update";
+	}
+	@RequestMapping(value = "/mypage/update", method = RequestMethod.POST)
+	public String memberUpdate(MemberVO memberVO, Locale locale, RedirectAttributes rdat, HttpServletRequest request) throws Exception {
+		String new_pw = memberVO.getUser_pw();//예를 들면 1234
+		if(new_pw != "") {
+			//스프링 시큐리티 4.x BCryptPasswordEncoder 암호화 사용
+			BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder(10);
+			String bcryptPassword = bcryptPasswordEncoder.encode(new_pw);//예, 1234 -> 암호화 처리됨
+			memberVO.setUser_pw(bcryptPassword);//DB에 들어가기전 값 set시킴.
+		}		
+		memberService.updateMember(memberVO);
+		rdat.addFlashAttribute("msg", "회원정보 수정");
+		//회원이름 세션변수 변경처리 session_username
+		HttpSession session = request.getSession(); //기존세션값 가져오기
+		session.setAttribute("session_username", memberVO.getUser_name());
+		return "redirect:/mypage/update";
+	}
+	
+	 
+	/**
+	 * 회원관리 > 회원탈퇴 입니다.
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "/mypage/delete", method = RequestMethod.POST)
+	public String memberDelete(MemberVO memberVO, Locale locale, RedirectAttributes rdat) throws Exception {
+		String new_pw = memberVO.getUser_pw();//예를 들면 1234
+		if(new_pw != "") {
+			//스프링 시큐리티 4.x BCryptPasswordEncoder 암호화 사용
+			BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder(10);
+			String bcryptPassword = bcryptPasswordEncoder.encode(new_pw);//예, 1234 -> 암호화 처리됨
+			memberVO.setUser_pw(bcryptPassword);//DB에 들어가기전 값 set시킴.
+		}	
+		memberVO.setEnabled(false); //회원정보 사용중지 아이디 지정
+		memberService.updateMember(memberVO);
+		rdat.addFlashAttribute("msg", "회원정보 수정");
+		return "redirect:/logout";
+	}
+	
+	   
    /**
 	 * 게시물관리 > 삭제 입니다.
 	 * @throws Exception 

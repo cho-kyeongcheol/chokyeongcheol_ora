@@ -38,7 +38,7 @@
 			<c:set var="extName" value="${fn:split(boardVO.files[0],'.')}" />
 			<c:set var="ext" value="${extName[fn:length(extName)-1]}" />
 			<c:if test="${fn:containsIgnoreCase(extNameArray, ext)}">
-				<img src="/download?filename=${boardVO.files[0]}" title="첨부파일 이미지" style="width:100%;">
+				<img src="/image_preview?filename=${boardVO.files[0]}" title="첨부파일 이미지" style="width:100%;">
 			</c:if>
 			</li>
 			</c:if>

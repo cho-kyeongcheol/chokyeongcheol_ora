@@ -47,4 +47,19 @@ public class MemberServiceImpl implements IF_MemberService {
 		return memberDAO.countUserId(pageVO);
 	}
 
+	@Override
+	public List<MemberVO> testJobMethod() throws Exception {
+		List<MemberVO> list = memberDAO.testJobMethod();
+		//실행 상황 확인
+		System.out.println(list);
+		//6개월동안 회원정보 수정을 안한 회원을 휴먼 계정으로 업데이트(아래)
+		System.out.println("=============6개월간 회원정보수정 안한 회원 휴먼계정으로 처리");
+		for(MemberVO vo:list) {
+			vo.setEnabled(false);
+			memberDAO.updateMember(vo);
+			
+		}
+		return memberDAO.testJobMethod();
+	}
+
 }
